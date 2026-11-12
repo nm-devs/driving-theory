@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الرئيسية - تعليم السياقة</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body id="top" class="min-h-screen flex flex-col pb-14 md:pb-0">
+
+  <!-- ================= HEADER (#theme-header) ================= -->
+  <header id="theme-header" class="theme-header header-layout-1 main-nav-light top-nav-active mobile-header-centered shadow-sm">
+    <div id="tie-wrapper">
+      <!-- Top Rainbow Line -->
+      <div id="rainbow-line"></div>
+
+      <!-- Top Bar (Date on Right, Socials + Dark Mode on Left) -->
+      <div class="bg-[#1f2327] text-gray-200 text-xs py-2 px-4 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+          <!-- Right in RTL: Today's Date -->
+          <div class="flex items-center gap-2 font-semibold">
+            <i class="fa-regular fa-clock text-[#E22B2B]"></i>
+            <span id="topBarDateText">الأربعاء, نوفمبر 11 2026</span>
+          </div>
+
+          <!-- Left in RTL: Social Links & Dark Mode Toggle -->
+          <div class="flex items-center gap-3">
+            <button type="button" id="darkModeToggleBtn" onclick="toggleDarkMode()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 transition" title="الوضع المظلم">
+              <i id="darkModeIcon" class="fa-solid fa-moon text-amber-400"></i>
+              <span id="darkModeText">الوضع المظلم</span>
+            </button>
+            <div class="flex items-center gap-2.5 text-sm">
+              
+              
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- White Logo Container (.logo-container) -->
+      <div class="logo-container theme-card bg-white py-4 px-4 border-b border-gray-200">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <button type="button" onclick="navigateTo('home')" class="flex items-center gap-4 text-right focus:outline-none group">
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-black text-[#E22B2B]">
+                تعليم السياقة
+              </h1>
+              <p class="text-xs sm:text-sm font-bold text-gray-600 mt-1">
+                خصوصي - شحن - عمومي
+              </p>
+            </div>
+          </button>
+
+
+        </div>
+      </div>
+
+      <!-- Main Navigation Bar (RTL Menu + Search Bar) -->
+      <nav class="bg-[#23282d] text-white border-b-2 border-[#E22B2B] sticky top-0 z-40 shadow">
+        <div class="max-w-6xl mx-auto px-3 sm:px-4 flex flex-wrap items-center justify-between gap-2">
+          <!-- Menu Items -->
+          <div class="flex flex-wrap items-center">
+            <button type="button" id="nav-home" onclick="navigateTo('home')" class="bg-[#E22B2B] text-white font-bold px-4 sm:px-5 py-3.5 text-sm flex items-center gap-2 transition hover:bg-[#b81d1d]">
+              <i class="fa-solid fa-house"></i>
+              <span>الرئيسية</span>
+            </button>
+
+            <!-- أسئلة التؤوريا Dropdown -->
+            <div class="relative dropdown-wrapper" id="theoryDropdownWrapper">
+              <button type="button" id="nav-theory" onclick="toggleDropdown('theoryDropdownWrapper')" class="px-4 sm:px-5 py-3.5 text-sm font-bold flex items-center gap-2 hover:bg-[#E22B2B] transition">
+                <span>أسئلة التؤوريا</span>
+                <i class="fa-solid fa-angle-down text-xs"></i>
+              </button>
+              <div class="dropdown-menu absolute right-0 top-full w-64 bg-[#2c3136] text-white shadow-2xl rounded-b-md border-t-2 border-[#E22B2B] py-1 z-50">
+                <button type="button" onclick="openCategory('khosousi')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center justify-between border-b border-gray-700/60 transition">
+                  <span>أسئلة تؤوريا خصوصي</span>
+                  <span class="text-[11px] bg-black/30 px-2 py-0.5 rounded">23</span>
+                </button>
+                <button type="button" onclick="openCategory('shahen_khafif')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center justify-between border-b border-gray-700/60 transition">
+                  <span>أسئلة تؤوريا شحن خفيف</span>
+                  <span class="text-[11px] bg-black/30 px-2 py-0.5 rounded">30</span>
+                </button>
+                <button type="button" onclick="openCategory('omoumi')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center justify-between border-b border-gray-700/60 transition">
+                  <span>أسئلة تؤوريا عمومي</span>
+                  <span class="text-[11px] bg-black/30 px-2 py-0.5 rounded">23</span>
+                </button>
+                <button type="button" onclick="openCategory('shahen_thaqil')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center justify-between border-b border-gray-700/60 transition">
+                  <span>أسئلة تؤوريا شحن ثقيل</span>
+                  <span class="text-[11px] bg-black/30 px-2 py-0.5 rounded">30</span>
+                </button>
+                <button type="button" onclick="openCategory('daraja')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center justify-between border-b border-gray-700/60 transition">
+                  <span>أسئلة تؤوريا دراجة نارية</span>
+                  <span class="text-[11px] bg-black/30 px-2 py-0.5 rounded">30</span>
+                </button>
+                <button type="button" onclick="openCategory('tractor')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center justify-between transition">
+                  <span>أسئلة تؤوريا تراكتور</span>
+                  <span class="text-[11px] bg-black/30 px-2 py-0.5 rounded">30</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- دراسة التؤوريا Dropdown -->
+            <div class="relative dropdown-wrapper" id="studyDropdownWrapper">
+              <button type="button" id="nav-study" onclick="toggleDropdown('studyDropdownWrapper')" class="px-4 sm:px-5 py-3.5 text-sm font-bold flex items-center gap-2 hover:bg-[#E22B2B] transition">
+                <i class="fa-solid fa-user text-xs"></i>
+                <span>دراسة التؤوريا</span>
+                <i class="fa-solid fa-angle-down text-xs"></i>
+              </button>
+              <div class="dropdown-menu absolute right-0 top-full w-56 bg-[#2c3136] text-white shadow-2xl rounded-b-md border-t-2 border-[#E22B2B] py-1 z-50">
+                <button type="button" onclick="navigateTo('signs')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center gap-2 border-b border-gray-700/60 transition">
+                  <i class="fa-solid fa-traffic-light text-amber-400"></i>
+                  <span>اشارات المرور</span>
+                </button>
+                <button type="button" onclick="navigateTo('book')" class="w-full text-right px-4 py-2.5 text-xs sm:text-sm font-bold hover:bg-[#E22B2B] flex items-center gap-2 transition">
+                  <i class="fa-solid fa-book text-sky-400"></i>
+                  <span>كتاب التؤوريا</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- اتصل بنا -->
+            <button type="button" id="nav-contact" onclick="navigateTo('contact')" class="px-4 sm:px-5 py-3.5 text-sm font-bold flex items-center gap-2 hover:bg-[#E22B2B] transition">
+              <i class="fa-solid fa-phone-flip text-xs"></i>
+              <span>اتصل بنا</span>
+            </button>
+          </div>
+
+          <!-- Search Input (بحث عن...) -->
+          <div class="py-1.5 w-full sm:w-auto flex justify-end">
+            <div class="relative w-full sm:w-56">
+              <input
+                type="text"
+                id="globalSearchInput"
+                oninput="handleGlobalSearch(this.value)"
+                placeholder="بحث عن..."
+                class="w-full bg-[#16191c] text-white text-xs rounded pr-3 pl-8 py-2 border border-gray-700 focus:border-[#E22B2B] focus:outline-none"
+              >
+              <button type="button" onclick="triggerSearchButton()" class="absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white" title="بحث عن">
+                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Live Search Results Drawer -->
+  <div id="searchResultsPanel" class="hidden bg-amber-50 border-b border-amber-300 px-4 py-3 shadow-inner">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-extrabold text-amber-900">
+          <i class="fa-solid fa-magnifying-glass ml-1"></i>
+          نتائج البحث عن: <strong id="searchQueryBadge" class="underline"></strong>
+        </span>
+        <button type="button" onclick="clearGlobalSearch()" class="text-xs font-bold text-red-700 hover:underline">
+          إغلاق ✕
+        </button>
+      </div>
+      <div id="searchResultsList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-56 overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN CONTENT CONTAINER ================= -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-3 sm:px-4 py-6">
+
+    <!-- ================= VIEW 1: HOMEPAGE (الرئيسية) ================= -->
+    <section id="view-home" class="space-y-8">
+
+      <div class="theme-card bg-white rounded-xl shadow border border-gray-200 p-6 sm:p-8">
+        <h2 class="text-2xl sm:text-4xl font-black text-[#E22B2B]">تعليم السياقة</h2>
+        <p class="text-sm sm:text-base font-bold text-gray-600 mt-3">تدرّب على امتحانات التؤوريا وراجع إشارات المرور وقواعد السياقة.</p>
+      </div>
+
+      <!-- Section Container: اسئلة امتحانات التؤوريا الجديدة (.tie-row.main-content-row) -->
+      <div class="theme-card bg-[#e9ecef] rounded-xl p-5 sm:p-7 border border-gray-300 shadow-sm">
+        <!-- Red Section Header with Car Icon & Underline -->
+        <div class="border-b-2 border-[#E22B2B] pb-3 mb-6 flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-xl sm:text-2xl font-black text-[#E22B2B] flex items-center gap-2.5">
+            <i class="fa-solid fa-car-side"></i>
+            <span>اسئلة امتحانات التؤوريا الجديدة</span>
+          </h2>
+          <span class="text-xs font-bold bg-white text-gray-800 px-3 py-1.5 rounded-full border border-gray-300 shadow-sm">
+            الامتحانات المكتملة: <strong id="totalCompletedCount" class="text-[#1D9E5B]">0</strong> / 166
+          </span>
+        </div>
+
+        <!-- 7 Category Cards Grid (.one_third.tie-columns) -->
+        <div class="tie-row main-content-row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- 1. اسئلة تؤوريا خصوصي -->
+          <div class="one_third tie-columns">
+            <button type="button" onclick="openCategory('khosousi')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-red-50 border-2 border-[#E22B2B] flex items-center justify-center text-[#E22B2B] text-3xl shadow-sm">
+                <i class="fa-solid fa-car"></i>
+              </div>
+              <span class="text-lg font-extrabold">اسئلة تؤوريا خصوصي</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">23 نموذج امتحان</span>
+            </button>
+          </div>
+
+          <!-- 2. اسئلة تؤوريا عمومي -->
+          <div class="one_third tie-columns">
+            <button type="button" onclick="openCategory('omoumi')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-amber-50 border-2 border-amber-500 flex items-center justify-center text-amber-600 text-3xl shadow-sm">
+                <i class="fa-solid fa-taxi"></i>
+              </div>
+              <span class="text-lg font-extrabold">اسئلة تؤوريا عمومي</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">23 نموذج امتحان</span>
+            </button>
+          </div>
+
+          <!-- 3. اسئلة تؤوريا شحن خفيف -->
+          <div class="one_third tie-columns">
+            <button type="button" onclick="openCategory('shahen_khafif')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-blue-50 border-2 border-blue-600 flex items-center justify-center text-blue-600 text-3xl shadow-sm">
+                <i class="fa-solid fa-truck-pickup"></i>
+              </div>
+              <span class="text-lg font-extrabold">اسئلة تؤوريا شحن خفيف</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">30 نموذج امتحان</span>
+            </button>
+          </div>
+
+          <!-- 4. اسئلة تؤوريا شحن ثقيل -->
+          <div class="one_third tie-columns">
+            <button type="button" onclick="openCategory('shahen_thaqil')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-orange-50 border-2 border-orange-600 flex items-center justify-center text-orange-600 text-3xl shadow-sm">
+                <i class="fa-solid fa-truck-moving"></i>
+              </div>
+              <span class="text-lg font-extrabold">اسئلة تؤوريا شحن ثقيل</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">30 نموذج امتحان</span>
+            </button>
+          </div>
+
+          <!-- 5. اسئلة تؤوريا تراكتور -->
+          <div class="one_third tie-columns">
+            <button type="button" onclick="openCategory('tractor')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-emerald-50 border-2 border-emerald-600 flex items-center justify-center text-emerald-600 text-3xl shadow-sm">
+                <i class="fa-solid fa-tractor"></i>
+              </div>
+              <span class="text-lg font-extrabold">اسئلة تؤوريا تراكتور</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">30 نموذج امتحان</span>
+            </button>
+          </div>
+
+          <!-- 6. اسئلة تؤوريا دراجة نارية -->
+          <div class="one_third tie-columns">
+            <button type="button" onclick="openCategory('daraja')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-purple-50 border-2 border-purple-600 flex items-center justify-center text-purple-600 text-3xl shadow-sm">
+                <i class="fa-solid fa-motorcycle"></i>
+              </div>
+              <span class="text-lg font-extrabold">اسئلة تؤوريا دراجة نارية</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">30 نموذج امتحان</span>
+            </button>
+          </div>
+
+          <!-- 7. اشارات المرور (7th Card Centered) -->
+          <div class="one_third tie-columns sm:col-span-2 lg:col-span-3 max-w-md mx-auto w-full">
+            <button type="button" onclick="navigateTo('signs')" class="category-card-link w-full p-5 flex flex-col items-center text-center gap-3">
+              <div class="w-20 h-20 rounded-full bg-red-50 border-2 border-[#E22B2B] flex items-center justify-center text-[#E22B2B] text-3xl shadow-sm">
+                <i class="fa-solid fa-traffic-light"></i>
+              </div>
+              <span class="text-lg font-extrabold">اشارات المرور</span>
+              <span class="text-xs font-bold text-gray-500 bg-gray-100 px-3 py-1 rounded-full">جدول الشاخصات التحذيرية والإرشادية والضوئية</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 2: NUMBERED EXAM BUTTONS PAGE (#tiepost-1057-section-4325) ================= -->
+    <section id="view-category" class="hidden space-y-5">
+      <!-- Breadcrumb Bar -->
+      <div class="theme-card bg-white rounded-lg p-3.5 border border-gray-200 shadow-sm flex flex-wrap items-center justify-between gap-2">
+        <div class="text-xs sm:text-sm font-bold text-gray-600 flex items-center gap-1.5">
+          <button type="button" onclick="navigateTo('home')" class="hover:text-[#E22B2B]">الرئيسية</button>
+          <span>/</span>
+          <span id="categoryBreadcrumb" class="text-[#E22B2B] font-extrabold">امتحانات تؤوريا خصوصي</span>
+        </div>
+        <div class="flex items-center gap-2">
+          
+          <button type="button" onclick="navigateTo('home')" class="bg-gray-800 hover:bg-gray-700 text-white text-xs font-bold px-3 py-1.5 rounded transition">
+            العودة للرئيسية
+          </button>
+        </div>
+      </div>
+
+      <!-- Section Wrapper (#tiepost-1057-section-4325) -->
+      <div id="tiepost-1057-section-4325" class="section-wrapper container normal-width without-background theme-card bg-white rounded-xl p-5 sm:p-7 border border-gray-200 shadow-sm">
+        <!-- Red Page Title with Red Underline -->
+        <div class="border-b-2 border-[#E22B2B] pb-3 mb-6 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 id="categoryTitleHeading" class="text-xl sm:text-2xl font-black text-[#E22B2B]">
+              امتحانات تؤوريا خصوصي
+            </h2>
+            <p id="categorySubtitleText" class="text-xs text-gray-500 font-bold mt-1">
+              اضغط على رقم الامتحان لفتح صفحة الأسئلة والبدء بالاختبار
+            </p>
+          </div>
+          <select id="categoryQuickSelect" onchange="openCategory(this.value)" class="bg-gray-50 border border-gray-300 text-gray-900 text-xs font-bold rounded px-3 py-2 focus:outline-none focus:border-[#E22B2B]">
+            <option value="khosousi">اسئلة تؤوريا خصوصي (23)</option>
+            <option value="omoumi">اسئلة تؤوريا عمومي (23)</option>
+            <option value="shahen_khafif">امتحانات تؤوريا شحن خفيف (30)</option>
+            <option value="shahen_thaqil">امتحانات تؤوريا شحن ثقيل (30)</option>
+            <option value="tractor">امتحانات تؤوريا تراكتور (30)</option>
+            <option value="daraja">اسئلة تؤوريا دراجة نارية (30)</option>
+          </select>
+        </div>
+
+        <!-- .entry.clearfix Grid of White Pill Chevron Exam Buttons -->
+        <div id="examButtonsGrid" class="entry clearfix grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Populated dynamically by openCategory() -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 3: WP-PRO-QUIZ CONTAINER (.wpProQuiz_content) ================= -->
+    <section id="view-exam" class="hidden space-y-5">
+      <!-- Breadcrumb: الرئيسية / امتحانات تؤوريا ... / اسئلة تؤوريا ... -->
+      <div class="theme-card bg-white rounded-lg p-3.5 border border-gray-200 shadow-sm flex flex-wrap items-center justify-between gap-2">
+        <div class="text-xs sm:text-sm font-bold text-gray-600 flex items-center gap-1.5">
+          <button type="button" onclick="navigateTo('home')" class="hover:text-[#E22B2B]">الرئيسية</button>
+          <span>/</span>
+          <button type="button" id="examCategoryBackBreadcrumb" onclick="backToCurrentCategory()" class="hover:text-[#E22B2B]">امتحانات تؤوريا خصوصي</button>
+          <span>/</span>
+          <span id="examCurrentBreadcrumb" class="text-[#E22B2B] font-extrabold">اسئلة تؤوريا خصوصي (1)</span>
+        </div>
+        <button type="button" onclick="backToCurrentCategory()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 text-xs font-bold px-3 py-1.5 rounded transition">
+          العودة لقائمة الامتحانات
+        </button>
+      </div>
+
+      <!-- WP-Pro-Quiz Content Box -->
+      <div class="wpProQuiz_content theme-card bg-white rounded-xl p-5 sm:p-7 border border-gray-200 shadow-md" id="wpProQuiz_1">
+        <!-- Post Title Header -->
+        <div class="border-b-2 border-[#E22B2B] pb-3 mb-6 flex items-center justify-between">
+          <h2 id="examMainTitle" class="text-xl sm:text-2xl font-black text-[#E22B2B]">
+            اسئلة تؤوريا خصوصي (1)
+          </h2>
+          <span id="examBadgeLabel" class="text-xs font-bold bg-gray-100 text-gray-700 px-3 py-1 rounded">
+            امتحان تفاعلي
+          </span>
+        </div>
+
+        <!-- A. Start Screen (.wpProQuiz_text + .wpProQuiz_StartButton) -->
+        <div id="examStartScreen" class="py-10 text-center space-y-5">
+          <h3 id="examStartTitle" class="text-xl sm:text-2xl font-extrabold text-gray-900">
+            امتحان تؤوريا خصوصي 1
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 font-semibold max-w-md mx-auto">
+            اضغط على زر "إبداء الامتحان" بالأسفل لبدء العد التنازلي (30:00 دقيقة) والإجابة على أسئلة الامتحان مع التصحيح الفوري.
+          </p>
+          <div>
+            <input
+              type="button"
+              value="إبداء الامتحان"
+              onclick="startActiveExam()"
+              class="wpProQuiz_button wpProQuiz_StartButton text-base px-8 py-3 shadow"
+            >
+          </div>
+        </div>
+
+        <!-- B. Active Quiz View (Timer + Progress Bar + Question + 4 Radio Options + Nav) -->
+        <div id="examActiveContainer" class="hidden space-y-5">
+          <!-- Timer & Progress Bar Header -->
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2.5">
+            <div class="flex items-center justify-between text-xs sm:text-sm font-extrabold">
+              <div class="wpProQuiz_time_text text-gray-800">
+                الوقت المتبقي: <span id="examTimerDisplay" class="font-mono text-base text-[#1D9E5B]" dir="ltr">30:00</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span id="examProgressPercent" class="text-[#1D9E5B]">0%</span>
+                <span id="examCounterDisplay" class="wpProQuiz_catName bg-gray-800 text-white px-2.5 py-0.5 rounded text-xs" dir="ltr">1 / 30</span>
+              </div>
+            </div>
+            <div class="wpProQuiz_time">
+              <div id="examProgressBar" class="wpProQuiz_progress" style="width: 0%;"></div>
+            </div>
+          </div>
+
+          <!-- Question Number Navigator Pills -->
+          <div id="questionPillsContainer" class="flex flex-wrap items-center gap-1.5 py-1"></div>
+
+          <!-- Question Block (.wpProQuiz_question_text) -->
+          <div class="wpProQuiz_question_text bg-gray-50/70 border border-gray-200 rounded-lg p-5 space-y-4">
+            <!-- Centered Traffic Sign Image (if question has a sign) -->
+            <div id="questionSignWrapper" class="hidden text-center">
+              <div id="questionSignSvgBox" class="w-28 h-28 mx-auto bg-white border border-gray-300 rounded-lg p-2 flex items-center justify-center shadow-sm"></div>
+              <span id="questionSignCodeLabel" class="inline-block text-xs font-bold text-gray-500 mt-1"></span>
+            </div>
+
+            <p id="questionTextPrompt" class="text-base sm:text-lg font-extrabold text-gray-900 leading-relaxed">
+              1. الشاخصة تعني :
+            </p>
+
+            <!-- Answer Options (<ul class="wpProQuiz_questionList">) -->
+            <ul id="questionChoicesList" class="wpProQuiz_questionList pt-2">
+              <!-- Populated dynamically -->
+            </ul>
+
+            <!-- Instant Grading Notice -->
+            <div id="questionInstantFeedback" class="hidden rounded p-3 text-xs sm:text-sm font-bold flex items-center gap-2"></div>
+          </div>
+
+          <!-- Navigation / Finish Buttons (.wpProQuiz_nav) -->
+          <div class="wpProQuiz_nav flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-gray-200">
+            <div class="flex items-center gap-2">
+              <input
+                type="button"
+                id="prevQuestionBtn"
+                onclick="stepQuestion(-1)"
+                class="wpProQuiz_button wpProQuiz_QuestionButton text-xs sm:text-sm"
+                value="السابق"
+              >
+              <input
+                type="button"
+                id="nextQuestionBtn"
+                onclick="stepQuestion(1)"
+                class="wpProQuiz_button wpProQuiz_QuestionButton text-xs sm:text-sm"
+                value="التالي"
+              >
+            </div>
+            <input
+              type="button"
+              name="check"
+              onclick="finishExam()"
+              class="wpProQuiz_button text-xs sm:text-sm"
+              value="إنهاء الامتحان"
+            >
+          </div>
+        </div>
+
+        <!-- C. Quiz Results Summary View -->
+        <div id="examResultScreen" class="hidden py-6 text-center space-y-6">
+          <div id="resultStatusBadgeIcon" class="w-16 h-16 rounded-full mx-auto flex items-center justify-center text-3xl"></div>
+          <div>
+            <h3 id="resultHeadlineText" class="text-2xl font-black">نتيجة الامتحان</h3>
+            <p id="resultSubText" class="text-sm text-gray-600 font-bold mt-1"></p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-xl mx-auto">
+            <div class="bg-emerald-50 border border-emerald-200 rounded-lg p-3.5">
+              <div class="text-xs text-emerald-800 font-bold">الإجابات الصحيحة</div>
+              <div id="resultCorrectCount" class="text-2xl font-black text-emerald-700 mt-1">0</div>
+            </div>
+            <div class="bg-red-50 border border-red-200 rounded-lg p-3.5">
+              <div class="text-xs text-red-800 font-bold">الإجابات الخاطئة</div>
+              <div id="resultWrongCount" class="text-2xl font-black text-red-700 mt-1">0</div>
+            </div>
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3.5">
+              <div class="text-xs text-blue-800 font-bold">النتيجة المئوية</div>
+              <div id="resultScorePercent" class="text-2xl font-black text-blue-700 mt-1">0%</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-3">
+            <input type="button" onclick="startActiveExam()" class="wpProQuiz_button text-sm" value="إعادة الامتحان">
+            <input type="button" onclick="openNextExamInCategory()" class="wpProQuiz_button wpProQuiz_QuestionButton text-sm" value="الامتحان التالي">
+            <button type="button" onclick="backToCurrentCategory()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold text-sm px-4 py-2.5 rounded">
+              قائمة الامتحانات
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 4: TRAFFIC SIGNS (اشارات المرور) ================= -->
+    <section id="view-signs" class="hidden space-y-5">
+      <div class="theme-card bg-white rounded-xl p-5 sm:p-7 border border-gray-200 shadow-sm">
+        <div class="border-b-2 border-[#E22B2B] pb-3 mb-5 flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-black text-[#E22B2B]">اشارات المرور - تعليم السياقة</h2>
+            <p class="text-xs text-gray-500 font-bold mt-1">شاخصات التحذير، شاخصات الإرشاد، شاخصات الاستعلامات، والآلات الضوئية</p>
+          </div>
+          
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center gap-2 mb-5">
+          <button type="button" onclick="filterTrafficSigns('all')" id="signTab-all" class="bg-[#E22B2B] text-white text-xs font-bold px-3.5 py-2 rounded">جميع الشاخصات (16)</button>
+          <button type="button" onclick="filterTrafficSigns('warning')" id="signTab-warning" class="bg-gray-100 text-gray-800 text-xs font-bold px-3.5 py-2 rounded">شاخصات التحذير (أ)</button>
+          <button type="button" onclick="filterTrafficSigns('guidance')" id="signTab-guidance" class="bg-gray-100 text-gray-800 text-xs font-bold px-3.5 py-2 rounded">شاخصات الإرشاد والمنع (ب)</button>
+          <button type="button" onclick="filterTrafficSigns('info')" id="signTab-info" class="bg-gray-100 text-gray-800 text-xs font-bold px-3.5 py-2 rounded">شاخصات الاستعلامات (ج)</button>
+          <button type="button" onclick="filterTrafficSigns('lights')" id="signTab-lights" class="bg-gray-100 text-gray-800 text-xs font-bold px-3.5 py-2 rounded">الآلات الضوئية (هـ)</button>
+        </div>
+
+        <!-- Traffic Signs Table Grid -->
+        <div id="trafficSignsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 5: THEORY BOOK (كتاب التؤوريا) ================= -->
+    <section id="view-book" class="hidden space-y-5">
+      <div class="theme-card bg-white rounded-xl p-5 sm:p-7 border border-gray-200 shadow-sm space-y-5">
+        <div class="border-b-2 border-[#E22B2B] pb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-xl sm:text-2xl font-black text-[#E22B2B]">كتاب التؤوريا - تعليم السياقة</h2>
+          <button type="button" onclick="openCategory('khosousi')" class="wpProQuiz_button text-xs">بدء امتحانات التؤوريا</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2">
+            <h3 class="text-base font-extrabold text-[#E22B2B]">1. قوانين المسافات والوقوف</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 space-y-1.5 font-semibold list-disc pr-4">
+              <li>المسافة بين شاخصة تحذير والشيء الذي تحذر منه تكون عادةً <strong>150 متراً</strong>.</li>
+              <li>يجب أن لا تزيد المسافة بين الرصيف والعجلات القريبة منه عند الوقوف عن <strong>40 سم</strong>.</li>
+              <li>يُمنع الوقوف قبل ممر المشاة أو خط التوقف بحدود <strong>12 متراً</strong>.</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2">
+            <h3 class="text-base font-extrabold text-[#E22B2B]">2. الأنوار والسرعات</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 space-y-1.5 font-semibold list-disc pr-4">
+              <li>يضيء نور الطريق (العالي) ليلاً لمسافة لا تقل عن <strong>100 متر</strong> ولمبته في التابلو <strong>زرقاء</strong>.</li>
+              <li>يضيء نور الالتقاء (العبور) ليلاً لمسافة لا تقل عن <strong>30 متراً</strong>.</li>
+              <li>ينير مصباح الرجوع إلى الخلف الطريق خلف المركبة لمسافة لا تزيد عن <strong>10 أمتار</strong>.</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2">
+            <h3 class="text-base font-extrabold text-[#E22B2B]">3. الأنظمة الميكانيكية والبيئة</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 space-y-1.5 font-semibold list-disc pr-4">
+              <li><strong>نظام E.S.P:</strong> يصحح أخطاء السائق عند الفرملة ويمنع التزحلق ويزيد توازن المركبة.</li>
+              <li><strong>سائل AdBlue:</strong> يقلل من خروج الغازات السامة من ماسورة العادم في مركبات الديزل.</li>
+              <li><strong>المركبات الهجينة (Hybrid):</strong> تتميز بانخفاض تلوث الهواء والمحافظة على البيئة.</li>
+            </ul>
+          </div>
+          <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 space-y-2">
+            <h3 class="text-base font-extrabold text-[#E22B2B]">4. إجراءات السلامة للسائق</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 space-y-1.5 font-semibold list-disc pr-4">
+              <li>قبل بدء السفر: ملاءمة المقعد والمقود والمرايا ومسند الرأس ثم ربط حزام الأمان.</li>
+              <li>للانتقال من (P) إلى (R) أو (D) في مركبة أوتوماتيكية: الضغط على دعسة الفرامل وزر عصا الغيارات.</li>
+              <li>ظهور إشارة Check Engine بشكل متقطع يعني وجود خلل كبير في المحرك يستوجب نقلها لمركز الصيانة.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VIEW 6: CONTACT US (اتصل بنا) ================= -->
+    <section id="view-contact" class="hidden space-y-5">
+      <div class="theme-card bg-white rounded-xl p-5 sm:p-7 border border-gray-200 shadow-sm space-y-6">
+        <div class="border-b-2 border-[#E22B2B] pb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 class="text-xl sm:text-2xl font-black text-[#E22B2B]">اتصل بنا - تعليم السياقة</h2>
+          
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-6 space-y-3">
+            <h3 class="text-base font-extrabold">التواصل</h3>
+            <p class="text-sm text-gray-600">لم تتم إضافة بيانات التواصل بعد.</p>
+          </div>
+
+          <div class="lg:col-span-6 bg-gray-50 border border-gray-200 rounded-lg p-5">
+            <h3 class="text-base font-extrabold text-gray-900 mb-3">نموذج تواصل تجريبي</h3>
+            <p class="text-xs text-gray-600 mb-3">هذا النموذج للعرض فقط ولا يرسل البيانات.</p>
+            <form id="contactInquiryForm" onsubmit="submitContactForm(event)" class="space-y-3">
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1" for="studentNameInput">الاسم</label>
+                <input id="studentNameInput" type="text" required placeholder="أدخل اسمك..." class="w-full rounded border border-gray-300 px-3 py-2 text-xs sm:text-sm text-gray-900">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1" for="studentPhoneInput">رقم الهاتف</label>
+                <input id="studentPhoneInput" type="tel" required placeholder="059xxxxxxx" class="w-full rounded border border-gray-300 px-3 py-2 text-xs sm:text-sm text-gray-900">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-gray-700 mb-1" for="studentLicenseSelect">نوع الرخصة</label>
+                <select id="studentLicenseSelect" class="w-full rounded border border-gray-300 px-3 py-2 text-xs sm:text-sm text-gray-900 font-bold">
+                  <option value="خصوصي">خصوصي</option>
+                  <option value="شحن خفيف">شحن خفيف</option>
+                  <option value="عمومي">عمومي</option>
+                  <option value="شحن ثقيل">شحن ثقيل</option>
+                  <option value="دراجة نارية">دراجة نارية</option>
+                  <option value="تراكتور">تراكتور</option>
+                </select>
+              </div>
+              <button type="submit" class="wpProQuiz_button w-full text-sm">تجربة النموذج</button>
+              <div id="contactFormFeedback" class="hidden rounded bg-emerald-100 border border-emerald-300 text-emerald-900 p-2.5 text-xs font-bold text-center"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER (#theme-footer) ================= -->
+  <footer id="theme-footer" class="site-footer custom-footer-style bg-[#111111] text-white py-5 px-4 border-t-2 border-[#E22B2B] mt-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="copyright-text text-xs sm:text-sm font-bold text-center sm:text-right">
+        © Copyright 2026, All Rights Reserved | <span class="text-red-500">❤️</span> Developed by Mr. Mohammad Ghattas |
+        
+      </p>
+      <div class="flex items-center gap-3 text-sm">
+        
+        
+        
+        
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button (زر الذهاب إلى الأعلى) -->
+  <button type="button" onclick="scrollToTop()" title="زر الذهاب إلى الأعلى" class="fixed bottom-16 md:bottom-5 left-5 z-40 w-10 h-10 rounded bg-[#E22B2B] hover:bg-[#b81d1d] text-white shadow flex items-center justify-center">
+    <i class="fa-solid fa-angle-up"></i>
+  </button>
+
+  <!-- Mobile Bottom Quick Bar -->
+  <div class="md:hidden fixed bottom-0 inset-x-0 bg-[#1f2327] text-white border-t border-gray-800 grid grid-cols-4 z-50 text-[11px] font-bold">
+    <button type="button" onclick="navigateTo('home')" class="py-2 flex flex-col items-center justify-center gap-0.5">
+      <i class="fa-solid fa-house"></i>
+      <span>الرئيسية</span>
+    </button>
+    <button type="button" onclick="openCategory('khosousi')" class="py-2 flex flex-col items-center justify-center gap-0.5">
+      <i class="fa-solid fa-list-check"></i>
+      <span>الاسئلة</span>
+    </button>
+    <button type="button" onclick="navigateTo('signs')" class="py-2 flex flex-col items-center justify-center gap-0.5">
+      <i class="fa-solid fa-traffic-light"></i>
+      <span>اشارات المرور</span>
+    </button>
+    <button type="button" onclick="focusMobileSearch()" class="py-2 flex flex-col items-center justify-center gap-0.5">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <span>بحث</span>
+    </button>
+  </div>
+
+  <!-- ================= JAVASCRIPT ENGINE ================= -->
+  <script src="./assets/app.js" defer></script>
+</body>
+</html>

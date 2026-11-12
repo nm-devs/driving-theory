@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --tie-red: #E22B2B;
+  --tie-red-dark: #b81d1d;
+  --quiz-green: #1D9E5B;
+  --quiz-green-hover: #157a45;
+  --bg-page: #f5f5f5;
+  --bg-card: #ffffff;
+  --text-primary: #111111;
+}
+
+body.dark-mode {
+  --bg-page: #121417;
+  --bg-card: #1e2227;
+  --text-primary: #f3f4f6;
+}
+
+body {
+  font-family: 'Noto Kufi Arabic', Tahoma, 'Inter', sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* TieLabs Jannah Theme #rainbow-line */
+#rainbow-line {
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg,
+    #e84393 0%, #e84393 14.28%,
+    #00cec9 14.28%, #00cec9 28.56%,
+    #fdcb6e 28.56%, #fdcb6e 42.84%,
+    #6c5ce7 42.84%, #6c5ce7 57.12%,
+    #0984e3 57.12%, #0984e3 71.4%,
+    #00b894 71.4%, #00b894 85.68%,
+    #E22B2B 85.68%, #E22B2B 100%
+  );
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  display: none;
+}
+.dropdown-wrapper:hover .dropdown-menu,
+.dropdown-wrapper.open .dropdown-menu {
+  display: block;
+}
+
+/* Homepage Category Card (.tie-columns .category-card-link) */
+.category-card-link {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 14px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.category-card-link:hover {
+  transform: translateY(-4px);
+  border-color: #E22B2B;
+  box-shadow: 0 10px 22px rgba(226, 43, 43, 0.16);
+}
+
+/* Exact Replica of the 230x68 White Pill Exam Button with Right Gray Chevron Tag */
+.tie-exam-pill-btn {
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 64px;
+  border-radius: 18px;
+  border: 1.5px solid #d8d8d8;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+.tie-exam-pill-btn:hover {
+  transform: translateY(-2px);
+  border-color: #E22B2B;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+}
+.tie-exam-pill-btn .chevron-num-tag {
+  background: linear-gradient(135deg, #e0e0e0 0%, #cfcfcf 100%);
+  color: #111111;
+  min-width: 58px;
+  height: 100%;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.15rem;
+  clip-path: polygon(18% 0%, 100% 0%, 100% 100%, 18% 100%, 0% 50%);
+  padding-left: 8px;
+  flex-shrink: 0;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.tie-exam-pill-btn:hover .chevron-num-tag {
+  background: linear-gradient(135deg, #E22B2B 0%, #b81d1d 100%);
+  color: #ffffff;
+}
+.tie-exam-pill-btn.completed-pill .chevron-num-tag {
+  background: linear-gradient(135deg, #1D9E5B 0%, #147a44 100%);
+  color: #ffffff;
+}
+
+/* Exact WP-Pro-Quiz Styles (.wpProQuiz_content) */
+.wpProQuiz_content {
+  font-family: 'Noto Kufi Arabic', Tahoma, sans-serif;
+}
+.wpProQuiz_button {
+  background-color: #1D9E5B;
+  color: #FFFFFF;
+  font-family: 'Noto Kufi Arabic', Tahoma, sans-serif;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 10px 24px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+.wpProQuiz_button:hover {
+  background-color: #157a45;
+}
+.wpProQuiz_QuestionButton {
+  background-color: #4b5563;
+}
+.wpProQuiz_QuestionButton:hover {
+  background-color: #374151;
+}
+.wpProQuiz_time {
+  width: 100%;
+  height: 14px;
+  background-color: #e5e7eb;
+  border-radius: 7px;
+  overflow: hidden;
+  border: 1px solid #d1d5db;
+}
+.wpProQuiz_progress {
+  height: 100%;
+  background-color: #1D9E5B;
+  transition: width 0.3s ease;
+}
+.wpProQuiz_questionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.wpProQuiz_questionListItem {
+  margin-bottom: 12px;
+}
+.wpProQuiz_label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #FFFFFF;
+  border: 1px solid #D3D3D3;
+  color: #333333;
+  border-radius: 5px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.wpProQuiz_label:hover {
+  border-color: #1D9E5B;
+  background-color: #f8fafc;
+}
+.wpProQuiz_label.answer-correct {
+  background-color: #28A745 !important;
+  border-color: #1D9E5B !important;
+  color: #FFFFFF !important;
+  font-weight: 800;
+}
+.wpProQuiz_label.answer-wrong {
+  background-color: #dc3545 !important;
+  border-color: #b02a37 !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+body.dark-mode .theme-card {
+  background-color: #1e2227 !important;
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+body.dark-mode .category-card-link,
+body.dark-mode .tie-exam-pill-btn {
+  background-color: #262b31 !important;
+  color: #f3f4f6 !important;
+  border-color: #374151 !important;
+}
+body.dark-mode .wpProQuiz_label {
+  background-color: #262b31;
+  color: #f3f4f6;
+  border-color: #4b5563;
+}
