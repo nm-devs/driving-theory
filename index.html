@@ -120,12 +120,6 @@
                 </button>
               </div>
             </div>
-
-            <!-- اتصل بنا -->
-            <button type="button" id="nav-contact" onclick="navigateTo('contact')" class="px-4 sm:px-5 py-3.5 text-sm font-bold flex items-center gap-2 hover:bg-[#E22B2B] transition">
-              <i class="fa-solid fa-phone-flip text-xs"></i>
-              <span>اتصل بنا</span>
-            </button>
           </div>
 
           <!-- Search Input (بحث عن...) -->
@@ -536,54 +530,7 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- ================= VIEW 6: CONTACT US (اتصل بنا) ================= -->
-    <section id="view-contact" class="hidden space-y-5">
-      <div class="theme-card bg-white rounded-xl p-5 sm:p-7 border border-gray-200 shadow-sm space-y-6">
-        <div class="border-b-2 border-[#E22B2B] pb-3 flex flex-wrap items-center justify-between gap-3">
-          <h2 class="text-xl sm:text-2xl font-black text-[#E22B2B]">اتصل بنا - تعليم السياقة</h2>
-          
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div class="lg:col-span-6 space-y-3">
-            <h3 class="text-base font-extrabold">التواصل</h3>
-            <p class="text-sm text-gray-600">لم تتم إضافة بيانات التواصل بعد.</p>
-          </div>
-
-          <div class="lg:col-span-6 bg-gray-50 border border-gray-200 rounded-lg p-5">
-            <h3 class="text-base font-extrabold text-gray-900 mb-3">نموذج تواصل تجريبي</h3>
-            <p class="text-xs text-gray-600 mb-3">هذا النموذج للعرض فقط ولا يرسل البيانات.</p>
-            <form id="contactInquiryForm" onsubmit="submitContactForm(event)" class="space-y-3">
-              <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1" for="studentNameInput">الاسم</label>
-                <input id="studentNameInput" type="text" required placeholder="أدخل اسمك..." class="w-full rounded border border-gray-300 px-3 py-2 text-xs sm:text-sm text-gray-900">
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1" for="studentPhoneInput">رقم الهاتف</label>
-                <input id="studentPhoneInput" type="tel" required placeholder="059xxxxxxx" class="w-full rounded border border-gray-300 px-3 py-2 text-xs sm:text-sm text-gray-900">
-              </div>
-              <div>
-                <label class="block text-xs font-bold text-gray-700 mb-1" for="studentLicenseSelect">نوع الرخصة</label>
-                <select id="studentLicenseSelect" class="w-full rounded border border-gray-300 px-3 py-2 text-xs sm:text-sm text-gray-900 font-bold">
-                  <option value="خصوصي">خصوصي</option>
-                  <option value="شحن خفيف">شحن خفيف</option>
-                  <option value="عمومي">عمومي</option>
-                  <option value="شحن ثقيل">شحن ثقيل</option>
-                  <option value="دراجة نارية">دراجة نارية</option>
-                  <option value="تراكتور">تراكتور</option>
-                </select>
-              </div>
-              <button type="submit" class="wpProQuiz_button w-full text-sm">تجربة النموذج</button>
-              <div id="contactFormFeedback" class="hidden rounded bg-emerald-100 border border-emerald-300 text-emerald-900 p-2.5 text-xs font-bold text-center"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
+    </section></main>
 
   <!-- ================= FOOTER (#theme-footer) ================= -->
   <footer id="theme-footer" class="site-footer custom-footer-style bg-[#111111] text-white py-5 px-4 border-t-2 border-[#E22B2B] mt-8">

@@ -401,7 +401,7 @@ const CATEGORIES = {
       closeAllDropdowns();
       stopExamTimer();
 
-      ['home', 'category', 'exam', 'signs', 'book', 'contact'].forEach(v => {
+      ['home', 'category', 'exam', 'signs', 'book'].forEach(v => {
         const sec = document.getElementById(`view-${v}`);
         if (sec) {
           sec.classList.toggle('hidden', v !== viewName);
@@ -414,9 +414,8 @@ const CATEGORIES = {
         exam: 'nav-theory',
         signs: 'nav-study',
         book: 'nav-study',
-        contact: 'nav-contact'
       };
-      ['nav-home', 'nav-theory', 'nav-study', 'nav-contact'].forEach(id => {
+      ['nav-home', 'nav-theory', 'nav-study'].forEach(id => {
         const btn = document.getElementById(id);
         if (btn) {
           btn.classList.toggle('bg-[#E22B2B]', navMap[viewName] === id);
@@ -879,16 +878,6 @@ const CATEGORIES = {
         : 'الوضع المظلم';
     }
 
-    function submitContactForm(event) {
-      event.preventDefault();
-      const name = document.getElementById('studentNameInput').value.trim();
-      const phone = document.getElementById('studentPhoneInput').value.trim();
-      const license = document.getElementById('studentLicenseSelect').value;
-      const fb = document.getElementById('contactFormFeedback');
-      fb.classList.remove('hidden');
-      fb.textContent = 'هذا نموذج تجريبي فقط. لم يتم إرسال أو حفظ بياناتك.';
-      document.getElementById('contactInquiryForm').reset();
-    }
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
